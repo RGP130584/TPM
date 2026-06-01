@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Skill Contract",
+    "type": "object",
+    "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "metadata": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "description": { "type": "string" },
+        "inputs": { "type": "object" },
+        "outputs": { "type": "object" }
+    },
+    "required": ["id", "name", "version"]
+}

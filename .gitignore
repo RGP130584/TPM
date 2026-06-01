@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+tpm.yaml
+.pytest_cache/
+.coverage
+tpm_runtime.db

@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Agent Contract",
+    "type": "object",
+    "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "metadata": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "role": { "type": "string" },
+        "mcps": {
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "skills": {
+            "type": "array",
+            "items": { "type": "string" }
+        }
+    },
+    "required": ["id", "name", "version", "role"]
+}
