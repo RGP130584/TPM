@@ -17,6 +17,7 @@ class EngineeringMCP(IRuntimeComponent):
 
     def __init__(self):
         self._state = LifecycleState.INITIALIZED
+        self.current_context = None
         self.doc_repo = BaseRepository(DocumentModel)
 
     @property
@@ -49,9 +50,11 @@ class EngineeringMCP(IRuntimeComponent):
             return new_doc.id
 
     def retrieve_documents(self, doc_id: str) -> Optional[Dict[str, Any]]:
+        if self.state != LifecycleState.RUNNING:
+            raise RuntimeError("MCP must be in RUNNING state to execute actions.")
         with UnitOfWork() as uow:
             doc = self.doc_repo.get(uow.session, doc_id)
-            if doc and doc.tenant_id == self.current_context.tenant_id:
+            if doc and self.current_context and doc.tenant_id == self.current_context.tenant_id:
                 return {
                     "id": doc.id,
                     "title": doc.title,
@@ -61,9 +64,11 @@ class EngineeringMCP(IRuntimeComponent):
         return None
 
     def register_metadata(self, doc_id: str, key: str, value: Any) -> bool:
+        if self.state != LifecycleState.RUNNING:
+            raise RuntimeError("MCP must be in RUNNING state to execute actions.")
         with UnitOfWork() as uow:
             doc = self.doc_repo.get(uow.session, doc_id)
-            if doc and doc.tenant_id == self.current_context.tenant_id:
+            if doc and self.current_context and doc.tenant_id == self.current_context.tenant_id:
                 metadata = dict(doc.metadata_json)
                 metadata[key] = value
                 doc.metadata_json = metadata

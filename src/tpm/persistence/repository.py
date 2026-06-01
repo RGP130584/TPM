@@ -1,4 +1,4 @@
-from typing import TypeVar, Generic, Type, List, Optional
+from typing import TypeVar, Generic, Type, List, Optional, Any
 from sqlalchemy.orm import Session
 from tpm.persistence.database import Base
 
