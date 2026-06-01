@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Transformer Contract",
+    "type": "object",
+    "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "metadata": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "transform_type": { "type": "string" }
+    },
+    "required": ["id", "name", "version", "transform_type"]
+}
