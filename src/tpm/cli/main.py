@@ -38,5 +38,14 @@ def dummy():
     pass
 
 
+@app.command("serve")
+def serve(host: str = "127.0.0.1", port: int = 8000):
+    """Sobe o FastAPI Gateway do TPM"""
+    import uvicorn
+
+    typer.echo(f"Iniciando TPM Gateway em http://{host}:{port}")
+    uvicorn.run("tpm.gateway.app:app", host=host, port=port, reload=False)
+
+
 if __name__ == "__main__":
     app()

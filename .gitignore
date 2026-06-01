@@ -3,3 +3,4 @@ __pycache__/
 tpm.yaml
 .pytest_cache/
 .coverage
+tpm_runtime.db
